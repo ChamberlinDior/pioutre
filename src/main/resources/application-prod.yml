@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+app:
+  storage:
+    root: ${APP_STORAGE_ROOT:/opt/presidency/uploads}
+  cors:
+    allowed-origins: ${APP_ALLOWED_ORIGINS}
+  security:
+    jwt-secret: ${APP_JWT_SECRET}
+    jwt-expiration: ${APP_JWT_EXPIRATION:86400000}
